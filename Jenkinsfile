@@ -41,10 +41,10 @@ pipeline {
         stage('Deploy Backend to Tomcat') {
             steps {
                 bat '''
-                set BACKEND_WAR_NAME=springbootbookapi.war
+                set BACKEND_WAR_NAME=BookManagement-Backend.war
                 set TOMCAT_WEBAPPS="C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps"
                 set BACKEND_WAR_PATH=%TOMCAT_WEBAPPS%\\%BACKEND_WAR_NAME%
-                set BACKEND_FOLDER=%TOMCAT_WEBAPPS%\\springbootbookapi
+                set BACKEND_FOLDER=%TOMCAT_WEBAPPS%\\BookManagement-Backend
 
                 REM Stop Tomcat
                 "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\bin\\catalina.bat" stop
