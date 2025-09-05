@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\3-1\BookManagementSystem\BookManagementApp\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3234395702.index
+1604864201.index
+74200863.index
+1397047405.index
+1036710050.index
+2722247682.index
