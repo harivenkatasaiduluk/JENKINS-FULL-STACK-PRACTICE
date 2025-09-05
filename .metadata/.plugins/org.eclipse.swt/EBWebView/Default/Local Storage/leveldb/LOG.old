@@ -1,2 +1,3 @@
-2025/08/19-19:29:48.135 1e4 Creating DB E:\3-1\BookManagementSystem\BookManagementApp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
-2025/08/19-19:29:48.154 1e4 Reusing MANIFEST E:\3-1\BookManagementSystem\BookManagementApp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/09/05-18:07:52.690 89f8 Reusing MANIFEST E:\3-1\BookManagementSystem\BookManagementApp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/09/05-18:07:52.702 89f8 Recovering log #3
+2025/09/05-18:07:52.705 89f8 Reusing old log E:\3-1\BookManagementSystem\BookManagementApp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
