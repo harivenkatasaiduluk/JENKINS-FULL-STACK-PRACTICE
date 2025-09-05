@@ -17,11 +17,13 @@ pipeline {
         stage('Deploy Frontend to Tomcat') {
             steps {
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactbookapi" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactbookapi"
+                set FRONTEND_PATH="C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactbookapi"
+                
+                if exist %FRONTEND_PATH% (
+                    rmdir /S /Q %FRONTEND_PATH%
                 )
-                mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactbookapi"
-                xcopy /E /I /Y reactbookapp\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\reactbookapi"
+                mkdir %FRONTEND_PATH%
+                xcopy /E /I /Y reactbookapp\\dist\\* %FRONTEND_PATH%
                 '''
             }
         }
@@ -39,13 +41,27 @@ pipeline {
         stage('Deploy Backend to Tomcat') {
             steps {
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\springbootapi.war" (
-                    del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\springbootapi.war"
+                set BACKEND_WAR_NAME=springbootbookapi.war
+                set TOMCAT_WEBAPPS="C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps"
+                set BACKEND_WAR_PATH=%TOMCAT_WEBAPPS%\\%BACKEND_WAR_NAME%
+                set BACKEND_FOLDER=%TOMCAT_WEBAPPS%\\springbootbookapi
+
+                REM Stop Tomcat
+                "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\bin\\catalina.bat" stop
+
+                REM Clean old deployment
+                if exist %BACKEND_WAR_PATH% (
+                    del /Q %BACKEND_WAR_PATH%
                 )
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\springbootbookapi" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\springbootbookapi"
+                if exist %BACKEND_FOLDER% (
+                    rmdir /S /Q %BACKEND_FOLDER%
                 )
-                copy "BookManagement-Backend\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\springbootbookapi.war"
+
+                REM Copy new WAR
+                copy "BookManagement-Backend\\target\\*.war" %BACKEND_WAR_PATH%
+
+                REM Start Tomcat
+                "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\bin\\catalina.bat" start
                 '''
             }
         }
